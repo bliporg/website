@@ -55,7 +55,7 @@ header {
 }
 
 main {
-    max-width: 1000px;
+    max-width: 900px;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -88,6 +88,17 @@ main {
     align-items: center;
     text-align: center;
     position: relative;
+}
+
+.block.framed {
+    padding: var(--space);
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
+}
+
+.block.framed h2 {
+    margin-top: 0;
 }
 
 .block.right {
@@ -208,7 +219,7 @@ h2 {
     -webkit-text-fill-color: transparent; */
     color: #FFF;
     font-weight: bold;
-    margin-top: var(--gap-big);
+    margin-top: var(--space-small);
     font-size: 1.5rem;
 }
 
@@ -259,6 +270,28 @@ h2 {
 .cta-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(102, 49, 168, 0.3);
+}
+
+.download-buttons {
+    display: flex;
+    gap: var(--space-small);
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.download-button {
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.download-button:hover {
+    transform: translateY(-2px);
+}
+
+.download-button img {
+    height: 4rem !important;
+    width: auto;
 }
 
 footer {
@@ -327,6 +360,11 @@ footer {
 }
 
 @media (max-width: 768px) {
+    .download-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
     header {
         width: 100%;
         padding: var(--small-screen-header-v-padding) var(--small-screen-header-h-padding);
