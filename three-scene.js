@@ -26,10 +26,34 @@ video.src = 'videos/demo.mp4';
 video.loop = true;
 video.muted = true;
 video.playsInline = true;
-// Make sure video is loaded before creating texture
+video.preload = 'auto'; // Enable preloading for streaming
+
+// Start playing as soon as enough data is buffered (streaming)
+video.addEventListener('canplay', () => {
+    if (video.paused) {
+        video.play().catch(e => console.log('Auto-play prevented:', e));
+    }
+}, { once: true });
+
+// Fallback: if canplay doesn't fire, try loadeddata
 video.addEventListener('loadeddata', () => {
-    video.play();
-});
+    if (video.paused) {
+        video.play().catch(e => console.log('Auto-play prevented:', e));
+    }
+}, { once: true });
+
+// Optional: Add progress tracking for debugging
+// video.addEventListener('progress', () => {
+//     if (video.buffered.length > 0) {
+//         const bufferedEnd = video.buffered.end(video.buffered.length - 1);
+//         const duration = video.duration;
+//         if (duration > 0) {
+//             const bufferedPercent = (bufferedEnd / duration) * 100;
+//             console.log(`Buffered: ${bufferedPercent.toFixed(1)}%`);
+//         }
+//     }
+// });
+
 const videoTexture = new THREE.VideoTexture(video);
 videoTexture.colorSpace = THREE.SRGBColorSpace;
 // videoTexture.minFilter = THREE.LinearFilter;
