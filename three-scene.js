@@ -106,6 +106,7 @@ loader.load(
         // Scale the model appropriately
         const scale = 1;
         model.scale.set(scale, scale, scale);
+        onWindowResize();
     },
     undefined,
     function (error) {
